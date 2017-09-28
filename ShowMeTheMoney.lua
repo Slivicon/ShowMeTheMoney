@@ -36,6 +36,9 @@ function ShowMeTheMoney:loadMap(name)
       self.money = serverMoney;
     end;
     -- self.playerCount = self:getPlayerCount();
+  else
+    -- client joining, ask server to send the money value?
+    --g_client:getServerConnection():sendEvent(ShowMeTheMoneyEvent:new()); -- generates error in client log "invalid Event ID"
   end;
 end;
 
@@ -55,14 +58,13 @@ function ShowMeTheMoney:update(dt)
       if self.money ~= serverMoney then
         print("ShowMeTheMoney:update - self.money '" .. tostring(self.money) .. "' serverMoney '" .. tostring(serverMoney) .. "', sendEvent");
         self.money = serverMoney;
-        ShowMeTheMoneyEvent.sendEvent(self, self.money);
+        ShowMeTheMoneyEvent.sendEvent(self.money);
       else
         local currPlayerCount = self:getPlayerCount();
         if currPlayerCount ~= self.playerCount then
           print("ShowMeTheMoney:update - number of players has changed, sendEvent");
-          self.money = serverMoney;
-          ShowMeTheMoneyEvent.sendEvent(self, self.money);
           self.playerCount = currPlayerCount;
+          ShowMeTheMoneyEvent.sendEvent(self.money);
         end;
       end;
     end;
@@ -102,7 +104,7 @@ function ShowMeTheMoney:setServerMoney(intMoney)
     print('ShowMeTheMoney:setServerMoney self is nil');
     ShowMeTheMoney.money = intMoney;
   else
-    print('ShowMeTheMoney:setServerMoney self is not nil');
+    print('ShowMeTheMoney:setServerMoney self is not nil, setting self.money to "' .. tostring(intMoney) .. '"');
     self.money = intMoney;
   end;
 end;
@@ -119,9 +121,14 @@ function ShowMeTheMoneyEvent:emptyNew()
   return self;
 end;
 
-function ShowMeTheMoneyEvent:new(obj, intMoney)
+function ShowMeTheMoneyEvent:new(intMoney)
   local self = ShowMeTheMoneyEvent:emptyNew();
-  self.obj = obj;
+  --local obj = ShowMeTheMoney;
+  --self.obj = obj;
+  --self.obj = obj;
+  if intMoney == nil then
+    intMoney = ShowMeTheMoney.money;
+  end;
   self.intMoney = intMoney;
   return self;
 end;
@@ -133,7 +140,8 @@ function ShowMeTheMoneyEvent:readStream(streamId, connection)
     print('ShowMeTheMoneyEvent:readStream self is nil');
   else
     -- modding handbook example for HonkEvent.lua is different than GDN LUADOC :/
-    self.obj = readNetworkNodeObject(streamId);
+    --self.obj = readNetworkNodeObject(streamId);
+    
     self.intMoney = streamReadInt32(streamId); -- writeStream item 2
     --self.obj = networkGetObject(id);
     print("ShowMeTheMoneyEvent:readStream self.intMoney'" .. tostring(self.intMoney) .. "'");
@@ -147,10 +155,10 @@ function ShowMeTheMoneyEvent:writeStream(streamId, connection)
     print('ShowMeTheMoneyEvent:writeStream self is nil');
   else
     -- modding handbook example for HonkEvent.lua is different than GDN LUADOC :/
-    writeNetworkNodeObject(streamId, self.obj);
---    local id = networkGetObjectId(self.obj);
---    print('ShowMeTheMoneyEvent:writeStream id "' .. tostring(id) .. '" intMoney "' .. tostring(self.intMoney) .. '"');
---    streamWriteInt8(streamId, id); -- item 1
+    --writeNetworkNodeObject(streamId, self.obj);
+    --local id = networkGetObjectId(self.obj);
+    --print('ShowMeTheMoneyEvent:writeStream id "' .. tostring(id) .. '" intMoney "' .. tostring(self.intMoney) .. '"');
+    --streamWriteInt8(streamId, id); -- item 1
     print('ShowMeTheMoneyEvent:writeStream intMoney "' .. tostring(self.intMoney) .. '"');
     streamWriteInt32(streamId, self.intMoney); -- item 2
   end;
@@ -159,28 +167,37 @@ end;
 function ShowMeTheMoneyEvent:run(connection)
   if self == nil then
     print('ShowMeTheMoneyEvent:run self is nil');
-  elseif self.obj == nil then
-    print('ShowMeTheMoneyEvent:run self.obj is nil');
+--  elseif self.obj == nil then
+--    print('ShowMeTheMoneyEvent:run self.obj is nil');
   else
     print("ShowMeTheMoneyEvent:run setServerMoney self.intMoney '" .. tostring(self.intMoney) .. "'");
-    self.obj:setServerMoney(self.intMoney);
-    if not connection:getIsServer() then
-      print("ShowMeTheMoneyEvent:run broadcastEvent");
-      g_server:broadcastEvent(ShowMeTheMoneyEvent:new(self.obj, self.intMoney), nil, connection, self.obj);
-    end;
+    --self.obj:setServerMoney(self.intMoney);
+    ShowMeTheMoney:setServerMoney(self.intMoney);
+--    if not connection:getIsServer() then
+--      print("ShowMeTheMoneyEvent:run broadcastEvent");
+--      g_server:broadcastEvent(ShowMeTheMoneyEvent:new(self.obj, self.intMoney), nil, connection, self.obj);
+--    end;
   end;
 end;
 
-function ShowMeTheMoneyEvent.sendEvent(obj, intMoney, noEventSend)
+function ShowMeTheMoneyEvent.sendEvent(intMoney, noEventSend)
   if noEventSend == nil or noEventSend == false then
     if g_server ~= nil then
+      if intMoney == nil then
+        intMoney = ShowMeTheMoneyEvent.intMoney;
+        print("ShowMeTheMoneyEvent.sendEvent intMoney was nil");
+        if intMoney == nil then
+          print("ShowMeTheMoneyEvent.sendEvent ShowMeTheMoneyEvent.intMoney was nil");
+          intMoney = ShowMeTheMoney.money;
+        end;
+      end;
       print("ShowMeTheMoneyEvent.sendEvent server initiated intMoney '" .. tostring(intMoney) .. "'");
-      g_server:broadcastEvent(ShowMeTheMoneyEvent:new(obj, intMoney), nil, nil, obj);
+      g_server:broadcastEvent(ShowMeTheMoneyEvent:new(intMoney));
     else
       -- don't think this will be needed as for this mod, it should always be the server
       -- todo: maybe find a way for client to initiate sending the event upon join so that server doesn't have to calculate player count every frame
-      print("ShowMeTheMoneyEvent.sendEvent client initiated intMoney '" .. tostring(intMoney) .. "'");
-      g_client:getServerConnection():sendEvent(ShowMeTheMoneyEvent:new(obj, intMoney));
+      --print("ShowMeTheMoneyEvent.sendEvent client initiated intMoney '" .. tostring(intMoney) .. "'");
+      --g_client:getServerConnection():sendEvent(ShowMeTheMoneyEvent:new());
     end;
   end;
 end;
