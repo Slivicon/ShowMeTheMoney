@@ -66,7 +66,8 @@ function ShowMeTheMoney:update(dt)
         end;
       end;
     end;
-    if not g_currentMission.isMasterUser or g_dedicatedServerInfo == nil then
+    -- don't run on dedi, don't run on players logged in as admin
+    if not g_currentMission.isMasterUser and g_dedicatedServerInfo == nil then -- todo: find out value of isMasterUser on the dedi
       self.fontSize = g_currentMission.inGameMessage.textSize;
       self.posX = g_currentMission.infoBarBgOverlay.x + g_currentMission.infoBarBgOverlay.width - g_currentMission.moneyTextOffsetX;
       self.posY = g_currentMission.infoBarBgOverlay.y + g_currentMission.moneyTextOffsetY - self.fontSize;
@@ -76,6 +77,7 @@ function ShowMeTheMoney:update(dt)
 end;
 
 function ShowMeTheMoney:draw()
+  -- only run on multiplayer players who are not logged in as admin
   if self.enabled == true and not g_currentMission.isMasterUser and g_dedicatedServerInfo == nil then
     setTextAlignment(RenderText.ALIGN_RIGHT);
     setTextColor(0.9961, 0.7490, 0.0039, 1); -- money icon colour [R, G, B, Alpha (0-1)]
@@ -130,6 +132,7 @@ function ShowMeTheMoneyEvent:readStream(streamId, connection)
   if self == nil then
     print('ShowMeTheMoneyEvent:readStream self is nil');
   else
+    -- modding handbook example for HonkEvent.lua is different than GDN LUADOC :/
     self.obj = readNetworkNodeObject(streamId);
     self.intMoney = streamReadInt32(streamId); -- writeStream item 2
     --self.obj = networkGetObject(id);
@@ -143,8 +146,9 @@ function ShowMeTheMoneyEvent:writeStream(streamId, connection)
   if self == nil then
     print('ShowMeTheMoneyEvent:writeStream self is nil');
   else
+    -- modding handbook example for HonkEvent.lua is different than GDN LUADOC :/
     writeNetworkNodeObject(streamId, self.obj);
-    --local id = networkGetObjectId(self.obj);
+--    local id = networkGetObjectId(self.obj);
 --    print('ShowMeTheMoneyEvent:writeStream id "' .. tostring(id) .. '" intMoney "' .. tostring(self.intMoney) .. '"');
 --    streamWriteInt8(streamId, id); -- item 1
     print('ShowMeTheMoneyEvent:writeStream intMoney "' .. tostring(self.intMoney) .. '"');
