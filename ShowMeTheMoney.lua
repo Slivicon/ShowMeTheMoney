@@ -1,5 +1,5 @@
 -- ShowMeTheMoney for Farming Simulator 17
--- @description: This displays the total amount of money available on the server to all players when playing a multiplayer game
+-- @description: This displays the total amount of money available on the server to all players (not logged in as admin) when playing a multiplayer game
 -- @author: Slivicon
 -- History at end of file. Thanks to timmiej93, Xentro, kevink98 (Farming Tablet mod), Decker_MMIV (Glance, FollowMe) and the modding community.
 --
@@ -42,10 +42,6 @@ function ShowMeTheMoney:draw()
       setTextAlignment(RenderText.ALIGN_LEFT);  -- in case another text rendering function does not set alignment, this resets it to left
     end;
   end;
-end;
-
-function ShowMeTheMoney:getMoney()
-  return self.money;
 end;
 
 function ShowMeTheMoney:isDisplayer() --is a player who should display the separate server money value
@@ -96,9 +92,9 @@ function ShowMeTheMoney:update(dt)
       end;
     end;
     if self:isDisplayer() then
-      self.fontSize = g_currentMission.inGameMessage.textSize;
+      self.fontSize = g_currentMission.timeScaleTextSize; --smallest infobar base game text; larger option is g_currentMission.inGameMessage.textSize;
       self.moneyDisplay = tostring(g_i18n:formatNumber(self.money, 0));
-      self.posX = g_currentMission.infoBarBgOverlay.x + g_currentMission.infoBarBgOverlay.width - g_currentMission.moneyTextOffsetX;
+      self.posX = g_currentMission.infoBarBgOverlay.x + g_currentMission.infoBarBgOverlay.width - g_currentMission.moneyTextOffsetX; --align with player money
       self.posY = g_currentMission.infoBarBgOverlay.y + g_currentMission.moneyTextOffsetY - (self.fontSize * 1.25);
     end;
   end;
@@ -137,7 +133,7 @@ function ShowMeTheMoney_ServerToClient_Event:run()
 end;
 
 function ShowMeTheMoney_ServerToClient_Event:sendEvent()
-  if g_server ~= nil then
+  if g_currentMission:getIsServer() then
     --print('ShowMeTheMoney_ServerToClient_Event:sendEvent - g_server:broadcastEvent');
     g_server:broadcastEvent(ShowMeTheMoney_ServerToClient_Event:new());
   else
@@ -179,5 +175,5 @@ end;
 print(string.format("Script loaded: ShowMeTheMoney.lua (v%s)", ShowMeTheMoney.version));
 
 --
--- @history 1.0  2017-09-30  Initial release for Farming Simulator 17
+-- @history 1.0  2017-10-01  Initial release for Farming Simulator 17
 --
