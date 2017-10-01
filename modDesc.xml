@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
   <modDesc descVersion="37">
     <author>Slivicon</author>
+    <version>1.0.0.0</version>
     <title>
       <de>ShowMeTheMoney</de>
       <en>ShowMeTheMoney</en>
@@ -15,7 +16,6 @@
     </description>
     <multiplayer supported="true"/>
     <iconFilename>store.dds</iconFilename>
-    <version>1.0</version>
     <extraSourceFiles>
       <sourceFile filename="ShowMeTheMoney.lua" />
     </extraSourceFiles>
