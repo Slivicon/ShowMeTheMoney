@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+  <modDesc descVersion="37">
+    <author>Slivicon</author>
+    <title>
+      <de>ShowMeTheMoney</de>
+      <en>ShowMeTheMoney</en>
+      <fr>ShowMeTheMoney</fr>
+      <pl>ShowMeTheMoney</pl>
+    </title>
+    <description>
+      <de><![CDATA[Dies zeigt die Gesamtmenge des Geldes an, das auf dem Bediener zu allen Spielern vorhanden ist (nicht angemeldet als admin) beim Spielen eines Multiplayer-Spiels.]]></de>
+      <en><![CDATA[This displays the total amount of money available on the server to all players (not logged in as admin) when playing a multiplayer game.]]></en>
+      <fr><![CDATA[Cela montre le montant total d'argent disponible sur le serveur à tous les joueurs (pas connecté en tant qu'administrateur) lors de la lecture d'un jeu multijoueur.]]></fr>
+      <pl><![CDATA[Pokazuje to całkowitą ilość pieniędzy dostępną na serwerze dla wszystkich graczy (nie zalogowanych jako administrator) podczas gry wieloosobowej.]]></pl>
+    </description>
+    <multiplayer supported="true"/>
+    <iconFilename>store.dds</iconFilename>
+    <version>1.0</version>
+    <extraSourceFiles>
+      <sourceFile filename="ShowMeTheMoney.lua" />
+    </extraSourceFiles>
+  </modDesc>
