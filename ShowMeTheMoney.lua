@@ -19,7 +19,7 @@ ShowMeTheMoney.version = (modItem and modItem.version) and modItem.version or "?
 function ShowMeTheMoney:loadMap(name)
   if not g_currentMission.missionDynamicInfo.isMultiplayer then --this mod is only useful in a multiplayer game
     self.enabled = false;
-    print('ShowMeTheMoney:loadMap - self.enabled = false');
+    --print('ShowMeTheMoney:loadMap - self.enabled = false');
   end;
 end;
 
