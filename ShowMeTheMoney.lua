@@ -1,7 +1,7 @@
 -- ShowMeTheMoney for Farming Simulator 17
 -- @description: This displays the total amount of money available on the server to all players (not logged in as admin) when playing a multiplayer game
 -- @author: Slivicon
--- History at end of file. Thanks to timmiej93, Xentro, kevink98 (Farming Tablet mod), Decker_MMIV (Glance, FollowMe) and the modding community.
+-- History at end of file. Thanks to timmiej93, Xentro, kevink98, Decker_MMIV, Rahkiin and the modding community.
 --
 
 ShowMeTheMoney = {};
@@ -108,6 +108,7 @@ InitEventClass(ShowMeTheMoney_ServerToClient_Event, "ShowMeTheMoney_ServerToClie
 
 function ShowMeTheMoney_ServerToClient_Event:emptyNew()
   local self = Event:new(ShowMeTheMoney_ServerToClient_Event_mt);
+  self.className = "ShowMeTheMoney_ServerToClient_Event";
   return self;
 end;
 
@@ -152,6 +153,7 @@ InitEventClass(ShowMeTheMoney_ClientToServer_Event, "ShowMeTheMoney_ClientToServ
 
 function ShowMeTheMoney_ClientToServer_Event:emptyNew()
   local self = Event:new(ShowMeTheMoney_ClientToServer_Event_mt);
+  self.className = "ShowMeTheMoney_ClientToServer_Event";
   return self;
 end;
 
@@ -175,5 +177,6 @@ end;
 print(string.format("Script loaded: ShowMeTheMoney.lua (v%s)", ShowMeTheMoney.version));
 
 --
--- @history 1.0  2017-10-01  Initial release for Farming Simulator 17
+-- @history 1.0.0.0  2017-10-01  Initial release for Farming Simulator 17
+--          1.0.0.1  2017-10-05  Fix issue where 2nd player gets invalid event ID error
 --

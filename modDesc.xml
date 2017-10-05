@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
   <modDesc descVersion="37">
     <author>Slivicon</author>
-    <version>1.0.0.0</version>
+    <version>1.0.0.1</version>
     <title>
       <de>ShowMeTheMoney</de>
       <en>ShowMeTheMoney</en>
@@ -9,10 +9,46 @@
       <pl>ShowMeTheMoney</pl>
     </title>
     <description>
-      <de><![CDATA[Dies zeigt die Gesamtmenge des Geldes an, das auf dem Bediener zu allen Spielern vorhanden ist (nicht angemeldet als admin) beim Spielen eines Multiplayer-Spiels.]]></de>
-      <en><![CDATA[This displays the total amount of money available on the server to all players (not logged in as admin) when playing a multiplayer game.]]></en>
-      <fr><![CDATA[Cela montre le montant total d'argent disponible sur le serveur à tous les joueurs (pas connecté en tant qu'administrateur) lors de la lecture d'un jeu multijoueur.]]></fr>
-      <pl><![CDATA[Pokazuje to całkowitą ilość pieniędzy dostępną na serwerze dla wszystkich graczy (nie zalogowanych jako administrator) podczas gry wieloosobowej.]]></pl>
+      <de><![CDATA[
+      Dies zeigt die Gesamtmenge des Geldes an, das auf dem Bediener zu allen Spielern vorhanden ist (nicht angemeldet als admin) beim Spielen eines Multiplayer-Spiels.
+      
+      Change log:
+      v1.0.0.1
+      - Fix issue where 2nd player gets invalid event ID error
+      v1.0.0.0
+      - Erstveröffentlichung
+      
+      ]]></de>
+      <en><![CDATA[
+      This displays the total amount of money available on the server to all players (not logged in as admin) when playing a multiplayer game.
+      
+      Change log:
+      v1.0.0.1
+      - Fix issue where 2nd player gets invalid event ID error
+      v1.0.0.0
+      - Initial release
+      
+      ]]></en>
+      <fr><![CDATA[
+      Cela montre le montant total d'argent disponible sur le serveur à tous les joueurs (pas connecté en tant qu'administrateur) lors de la lecture d'un jeu multijoueur.
+      
+      Journal de changement:
+      v1.0.0.1
+      - Correction d'un problème lorsque le 2ème joueur reçoit une erreur d'identification d'événement invalide
+      v1.0.0.0
+      - Première version
+
+      ]]></fr>
+      <pl><![CDATA[
+      Pokazuje to całkowitą ilość pieniędzy dostępną na serwerze dla wszystkich graczy (nie zalogowanych jako administrator) podczas gry wieloosobowej.
+      
+      Zmień dziennik:
+      v1.0.0.1
+      - Rozwiązać problem, gdy drugi gracz otrzymuje nieprawidłowy identyfikator zdarzenia
+      v1.0.0.0
+      - Pierwsze wydanie
+
+      ]]></pl>
     </description>
     <multiplayer supported="true"/>
     <iconFilename>store.dds</iconFilename>
