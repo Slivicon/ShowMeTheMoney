@@ -53,8 +53,8 @@ function ShowMeTheMoney:isDisplayer() --is a player who should display the separ
 end;
 
 function ShowMeTheMoney:setMoney(serverMoney)
+  --print('ShowMeTheMoney:setMoney set self.money "' .. tostring(self.money) .. '" to serverMoney "' .. tostring(serverMoney) .. '"');
   self.money = serverMoney;
-  --print('ShowMeTheMoney:setMoney self.money "' .. tostring(self.money) .. '" serverMoney "' .. tostring(serverMoney) .. '"');
 end;
 
 function ShowMeTheMoney:update(dt)
@@ -76,15 +76,10 @@ function ShowMeTheMoney:update(dt)
         --print('ShowMeTheMoney:update - self.sendUpdate = true');
       end;
     end;
-    if self.eventSent and not self.sendUpdate and self.dt == 0 then -- last update sent for this money change
-      self.eventSent = false; -- send event only when money change is detected
-      --print('ShowMeTheMoney:update - self.eventSent = false');
-    end;
     if self.sendUpdate then
-      if self.dt >= 1000 and not self.eventSent then
+      if self.dt >= 1000 then
         self.dt = 0;
         self.sendUpdate = false;
-        self.eventSent = true;
         --print('ShowMeTheMoney:update - ShowMeTheMoney_ServerToClient_Event:sendEvent');
         ShowMeTheMoney_ServerToClient_Event:sendEvent();
       else
@@ -107,12 +102,14 @@ ShowMeTheMoney_ServerToClient_Event_mt = Class(ShowMeTheMoney_ServerToClient_Eve
 InitEventClass(ShowMeTheMoney_ServerToClient_Event, "ShowMeTheMoney_ServerToClient_Event");
 
 function ShowMeTheMoney_ServerToClient_Event:emptyNew()
+  --print('ShowMeTheMoney_ServerToClient_Event:emptyNew');
   local self = Event:new(ShowMeTheMoney_ServerToClient_Event_mt);
   self.className = "ShowMeTheMoney_ServerToClient_Event";
   return self;
 end;
 
 function ShowMeTheMoney_ServerToClient_Event:new()
+  --print('ShowMeTheMoney_ServerToClient_Event:new');
   local self = ShowMeTheMoney_ServerToClient_Event:emptyNew();
   self.money = g_currentMission:getTotalMoney();
   return self;
@@ -130,6 +127,7 @@ function ShowMeTheMoney_ServerToClient_Event:readStream(streamId, connection)
 end;
 
 function ShowMeTheMoney_ServerToClient_Event:run()
+  --print('ShowMeTheMoney_ServerToClient_Event:run');
   ShowMeTheMoney:setMoney(self.money);
 end;
 
@@ -144,6 +142,7 @@ function ShowMeTheMoney_ServerToClient_Event:sendEvent()
 end;
 
 function ShowMeTheMoney_ServerToClient_Event:writeStream(streamId, connection)
+  --print('ShowMeTheMoney_ServerToClient_Event:writeStream');
   streamWriteInt32(streamId, self.money);
 end;
 
@@ -152,17 +151,20 @@ ShowMeTheMoney_ClientToServer_Event_mt = Class(ShowMeTheMoney_ClientToServer_Eve
 InitEventClass(ShowMeTheMoney_ClientToServer_Event, "ShowMeTheMoney_ClientToServer_Event");
 
 function ShowMeTheMoney_ClientToServer_Event:emptyNew()
+  --print('ShowMeTheMoney_ClientToServer_Event:emptyNew');
   local self = Event:new(ShowMeTheMoney_ClientToServer_Event_mt);
   self.className = "ShowMeTheMoney_ClientToServer_Event";
   return self;
 end;
 
 function ShowMeTheMoney_ClientToServer_Event:new()
+  --print('ShowMeTheMoney_ClientToServer_Event:new');
   local self = ShowMeTheMoney_ClientToServer_Event:emptyNew();
   return self;
 end;
 
 function ShowMeTheMoney_ClientToServer_Event:readStream(streamId, connection)
+  --print('ShowMeTheMoney_ClientToServer_Event:readStream');
   self:run(connection);
 end;
 
@@ -172,6 +174,7 @@ function ShowMeTheMoney_ClientToServer_Event:run(connection)
 end;
 
 function ShowMeTheMoney_ClientToServer_Event:writeStream(streamId, connection)
+  --print('ShowMeTheMoney_ClientToServer_Event:writeStream');
 end;
 
 print(string.format("Script loaded: ShowMeTheMoney.lua (v%s)", ShowMeTheMoney.version));
@@ -179,4 +182,5 @@ print(string.format("Script loaded: ShowMeTheMoney.lua (v%s)", ShowMeTheMoney.ve
 --
 -- @history 1.0.0.0  2017-10-01  Initial release for Farming Simulator 17
 --          1.0.0.1  2017-10-05  Fix issue where 2nd player gets invalid event ID error
+--          1.0.0.2  2017-10-08  Fix issue where subsequent updates are sometimes not sent to the client
 --
