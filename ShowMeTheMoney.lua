@@ -183,4 +183,6 @@ print(string.format("Script loaded: ShowMeTheMoney.lua (v%s)", ShowMeTheMoney.ve
 -- @history 1.0.0.0  2017-10-01  Initial release for Farming Simulator 17
 --          1.0.0.1  2017-10-05  Fix issue where 2nd player gets invalid event ID error
 --          1.0.0.2  2017-10-08  Fix issue where subsequent updates are sometimes not sent to the client
+--          1.0.0.3  2017-10-10  Update German description translation as per Giants
+--          1.0.0.4  2017-10-26  Change mod icon to use FS17 template background as per Giants
 --
