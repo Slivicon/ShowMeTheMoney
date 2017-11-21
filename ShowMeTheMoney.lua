@@ -45,7 +45,7 @@ function ShowMeTheMoney:draw()
 end;
 
 function ShowMeTheMoney:isDisplayer() --is a player who should display the separate server money value
-  if not g_currentMission.isMasterUser and g_dedicatedServerInfo == nil then --only display on non-admin players who are not hosting the game
+  if g_dedicatedServerInfo == nil and ((g_currentMission.isMasterUser and g_currentMission.clientPermissionSettings.ownMoney) or (not g_currentMission.isMasterUser)) then --only display to non-admin players who are not hosting the game and admins when separate accounts are enabled
     return true;
   else
     return false;
@@ -185,4 +185,5 @@ print(string.format("Script loaded: ShowMeTheMoney.lua (v%s)", ShowMeTheMoney.ve
 --          1.0.0.2  2017-10-08  Fix issue where subsequent updates are sometimes not sent to the client
 --          1.0.0.3  2017-10-10  Update German description translation as per Giants
 --          1.0.0.4  2017-10-26  Change mod icon to use FS17 template background as per Giants
+--          1.0.0.5  2017-11-21  Display to admin players when separate accounts are enabled
 --
