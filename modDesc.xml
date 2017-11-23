@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
-  <modDesc descVersion="37">
+  <modDesc descVersion="38">
     <author>Slivicon</author>
-    <version>1.0.0.5</version>
-    <!--
+    <version>1.0.0.6</version>
+    <title>
+      <en>ShowMeTheMoney</en>
+      <de>ShowMeTheMoney</de>
+      <fr>ShowMeTheMoney</fr>
+    </title>
+    <description>
+      <en><![CDATA[
+      This displays the total amount of money available on the server to all players (not logged in as admin) when playing a multiplayer game.
 
       Change log:
+        v1.0.0.6
+          - Update descVersion to 38 as per Giants
+          - Update change log as per Giants
         v1.0.0.5
           - Display to admin players when separate accounts are enabled
         v1.0.0.4
@@ -18,21 +28,48 @@
         v1.0.0.0
           - Initial release
 
-    -->
-    <title>
-      <en>ShowMeTheMoney</en>
-      <de>ShowMeTheMoney</de>
-      <fr>ShowMeTheMoney</fr>
-    </title>
-    <description>
-      <en><![CDATA[
-      This displays the total amount of money available on the server to all players (not logged in as admin) when playing a multiplayer game.
-      ]]></en>
+    ]]></en>
       <de><![CDATA[
       Dies zeigt die Gesamtmenge des Geldes an, das auf dem Server für alle Spieler vorhanden ist, welche nicht als Admin angemeldet sind.
+
+      Änderungsprotokoll:
+         v1.0.0.6
+           - Update descVersion bis 38, wie durch GIANTS angewiesen
+           - Update Änderungsprotokoll wie von GIANTS angewiesen
+         v1.0.0.5
+           - Anzeige zu Admin-Playern, wenn separate Accounts aktiviert sind
+         v1.0.0.4
+           - Ändern Sie das Mod-Symbol, um den LS17-Vorlagenhintergrund gemäß GIANTS zu verwenden.
+         v1.0.0.3
+           - Aktualisierung der deutschen Beschreibungsübersetzung nach GIANTS
+         v1.0.0.2
+           - Behebung eines Problems, bei dem nachfolgende Updates manchmal nicht an den Client gesendet werden
+         v1.0.0.1
+           - Problem behoben, bei dem der zweite Spieler einen ungültigen Ereignis-ID-Fehler erhält
+         v1.0.0.0
+           - Erstveröffentlichung
+
       ]]></de>
       <fr><![CDATA[
       Cela montre le montant total d'argent disponible sur le serveur à tous les joueurs (pas connecté en tant qu'administrateur) lors de la lecture d'un jeu multijoueur.
+
+      Journal des modifications:
+         v1.0.0.6
+           - Mettre à jour descVersion à 38 selon GIANTS
+           - Mettre à jour le journal des modifications selon GIANTS
+         v1.0.0.5
+           - Affichage aux joueurs admin lorsque les comptes séparés sont activés
+         v1.0.0.4
+           - Changer l'icône de mod pour utiliser l'arrière-plan standard selon GIANTS
+         v1.0.0.3
+           - Mettre à jour la traduction allemande de la description selon GIANTS
+         v1.0.0.2
+           - Correction d'un problème où les mises à jour ultérieures ne sont parfois pas envoyées au client
+         v1.0.0.1
+           - Correction d'un problème où le 2ème joueur obtient une erreur d'identification d'événement invalide
+         v1.0.0.0
+           - Version initiale
+
       ]]></fr>
     </description>
     <multiplayer supported="true"/>
