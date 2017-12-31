@@ -1,76 +1,82 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
   <modDesc descVersion="38">
     <author>Slivicon</author>
-    <version>1.0.0.6</version>
+    <version>1.0.0.7</version>
     <title>
-      <en>ShowMeTheMoney</en>
       <de>ShowMeTheMoney</de>
+      <en>ShowMeTheMoney</en>
       <fr>ShowMeTheMoney</fr>
     </title>
     <description>
+      <de><![CDATA[
+      Dies zeigt die Gesamtmenge des geteilten Geldes auf dem Server für alle Spieler an, wenn ein Multiplayer-Spiel gespielt wird.
+ 
+      Änderungsprotokoll:
+        v1.0.0.7 2017-12-01
+          - Unterstütze Mods, die das HUD ausblenden, indem nur angezeigt wird, wenn die Spielzeit angezeigt wird
+        v1.0.0.6 2017-11-27
+          - Update descVersion bis 38, wie durch GIANTS angewiesen
+          - Update Änderungsprotokoll wie von GIANTS angewiesen
+        v1.0.0.5 2017-11-21
+          - Anzeige zu Admin-Playern, wenn separate Accounts aktiviert sind
+        v1.0.0.4 2017-10-26
+          - Ändern Sie das Mod-Symbol, um den LS17-Vorlagenhintergrund gemäß GIANTS zu verwenden.
+        v1.0.0.3 2017-10-10
+          - Aktualisierung der deutschen Beschreibungsübersetzung nach GIANTS
+        v1.0.0.2 2017-10-08
+          - Behebung eines Problems, bei dem nachfolgende Updates manchmal nicht an den Client gesendet werden
+        v1.0.0.1 2017-10-05
+          - Problem behoben, bei dem der zweite Spieler einen ungültigen Ereignis-ID-Fehler erhält
+        v1.0.0.0 2017-10-01
+          - Erstveröffentlichung
+
+   ]]></de>
       <en><![CDATA[
-      This displays the total amount of money available on the server to all players (not logged in as admin) when playing a multiplayer game.
+      This displays the total amount of shared money on the server to all players when playing a multiplayer game.
 
       Change log:
-        v1.0.0.6
+        v1.0.0.7 2017-12-01
+          - Support HUD hiding mods by only displaying when in-game time is displayed
+        v1.0.0.6 2017-11-27
           - Update descVersion to 38 as per Giants
           - Update change log as per Giants
-        v1.0.0.5
+        v1.0.0.5 2017-11-21
           - Display to admin players when separate accounts are enabled
-        v1.0.0.4
+        v1.0.0.4 2017-10-26
           - Change mod icon to use FS17 template background as per Giants
-        v1.0.0.3
+        v1.0.0.3 2017-10-10
           - Update German description translation as per Giants
-        v1.0.0.2
+        v1.0.0.2 2017-10-08
           - Fix issue where subsequent updates are sometimes not sent to the client
-        v1.0.0.1
+        v1.0.0.1 2017-10-05
           - Fix issue where 2nd player gets invalid event ID error
-        v1.0.0.0
+        v1.0.0.0 2017-10-01
           - Initial release
 
-    ]]></en>
-      <de><![CDATA[
-      Dies zeigt die Gesamtmenge des Geldes an, das auf dem Server für alle Spieler vorhanden ist, welche nicht als Admin angemeldet sind.
-
-      Änderungsprotokoll:
-         v1.0.0.6
-           - Update descVersion bis 38, wie durch GIANTS angewiesen
-           - Update Änderungsprotokoll wie von GIANTS angewiesen
-         v1.0.0.5
-           - Anzeige zu Admin-Playern, wenn separate Accounts aktiviert sind
-         v1.0.0.4
-           - Ändern Sie das Mod-Symbol, um den LS17-Vorlagenhintergrund gemäß GIANTS zu verwenden.
-         v1.0.0.3
-           - Aktualisierung der deutschen Beschreibungsübersetzung nach GIANTS
-         v1.0.0.2
-           - Behebung eines Problems, bei dem nachfolgende Updates manchmal nicht an den Client gesendet werden
-         v1.0.0.1
-           - Problem behoben, bei dem der zweite Spieler einen ungültigen Ereignis-ID-Fehler erhält
-         v1.0.0.0
-           - Erstveröffentlichung
-
-      ]]></de>
+   ]]></en>
       <fr><![CDATA[
-      Cela montre le montant total d'argent disponible sur le serveur à tous les joueurs (pas connecté en tant qu'administrateur) lors de la lecture d'un jeu multijoueur.
-
+      Cela affiche le montant total de l'argent partagé sur le serveur à tous les joueurs lors d'une partie multijoueur.
+      
       Journal des modifications:
-         v1.0.0.6
-           - Mettre à jour descVersion à 38 selon GIANTS
-           - Mettre à jour le journal des modifications selon GIANTS
-         v1.0.0.5
-           - Affichage aux joueurs admin lorsque les comptes séparés sont activés
-         v1.0.0.4
-           - Changer l'icône de mod pour utiliser l'arrière-plan standard selon GIANTS
-         v1.0.0.3
-           - Mettre à jour la traduction allemande de la description selon GIANTS
-         v1.0.0.2
-           - Correction d'un problème où les mises à jour ultérieures ne sont parfois pas envoyées au client
-         v1.0.0.1
-           - Correction d'un problème où le 2ème joueur obtient une erreur d'identification d'événement invalide
-         v1.0.0.0
-           - Version initiale
+        v1.0.0.7 2017-12-01
+          - Supporte les mods qui cachent le HUD en affichant seulement quand l'heure du jeu est affichée
+        v1.0.0.6 2017-11-27
+          - Mettre à jour descVersion à 38 selon GIANTS
+          - Mettre à jour le journal des modifications selon GIANTS
+        v1.0.0.5 2017-11-21
+          - Affichage aux joueurs admin lorsque les comptes séparés sont activés
+        v1.0.0.4 2017-10-26
+          - Changer l'icône de mod pour utiliser l'arrière-plan standard selon GIANTS
+        v1.0.0.3 2017-10-10
+          - Mettre à jour la traduction allemande de la description selon GIANTS
+        v1.0.0.2 2017-10-08
+          - Correction d'un problème où les mises à jour ultérieures ne sont parfois pas envoyées au client
+        v1.0.0.1 2017-10-05
+          - Correction d'un problème où le 2ème joueur obtient une erreur d'identification d'événement invalide
+        v1.0.0.0 2017-10-01
+          - Version initiale
 
-      ]]></fr>
+   ]]></fr>
     </description>
     <multiplayer supported="true"/>
     <iconFilename>store.dds</iconFilename>

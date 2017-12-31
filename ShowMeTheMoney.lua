@@ -1,7 +1,8 @@
 -- ShowMeTheMoney for Farming Simulator 17
--- @description: This displays the total amount of money available on the server to all players (not logged in as admin) when playing a multiplayer game
+-- @description: This displays the total amount of shared money on the server to all players when playing a multiplayer game
 -- @author: Slivicon
--- History at end of file. Thanks to timmiej93, Xentro, kevink98, Decker_MMIV, Rahkiin and the modding community.
+-- Change Log stored in modDesc.xml
+-- Credits: Thanks to timmiej93, Xentro, kevink98, Decker_MMIV, Rahkiin and the modding community.
 --
 
 ShowMeTheMoney = {};
@@ -45,7 +46,11 @@ function ShowMeTheMoney:draw()
 end;
 
 function ShowMeTheMoney:isDisplayer() --is a player who should display the separate server money value
-  if g_dedicatedServerInfo == nil and ((g_currentMission.isMasterUser and g_currentMission.clientPermissionSettings.ownMoney) or (not g_currentMission.isMasterUser)) then --only display to non-admin players who are not hosting the game and admins when separate accounts are enabled
+  local bIsNotDedi = g_dedicatedServerInfo == nil;
+  local bIsAdmin = g_currentMission.isMasterUser;
+  local bIsAdminWithOwnMoney = bIsAdmin and g_currentMission.clientPermissionSettings.ownMoney;
+  local bIsHudShown = g_currentMission.renderTime;
+  if bIsNotDedi and bIsHudShown and ((bIsAdminWithOwnMoney) or (not bIsAdmin)) then
     return true;
   else
     return false;
@@ -178,12 +183,3 @@ function ShowMeTheMoney_ClientToServer_Event:writeStream(streamId, connection)
 end;
 
 print(string.format("Script loaded: ShowMeTheMoney.lua (v%s)", ShowMeTheMoney.version));
-
---
--- @history 1.0.0.0  2017-10-01  Initial release for Farming Simulator 17
---          1.0.0.1  2017-10-05  Fix issue where 2nd player gets invalid event ID error
---          1.0.0.2  2017-10-08  Fix issue where subsequent updates are sometimes not sent to the client
---          1.0.0.3  2017-10-10  Update German description translation as per Giants
---          1.0.0.4  2017-10-26  Change mod icon to use FS17 template background as per Giants
---          1.0.0.5  2017-11-21  Display to admin players when separate accounts are enabled
---
