@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
   <modDesc descVersion="38">
     <author>Slivicon</author>
-    <version>1.0.0.7</version>
+    <version>2.0.0.0</version>
     <title>
       <de>ShowMeTheMoney</de>
       <en>ShowMeTheMoney</en>
@@ -9,77 +9,110 @@
     </title>
     <description>
       <de><![CDATA[
-      Dies zeigt die Gesamtmenge des geteilten Geldes auf dem Server für alle Spieler an, wenn ein Multiplayer-Spiel gespielt wird.
- 
-      Änderungsprotokoll:
-        v1.0.0.7 2017-12-01
-          - Unterstütze Mods, die das HUD ausblenden, indem nur angezeigt wird, wenn die Spielzeit angezeigt wird
-        v1.0.0.6 2017-11-27
-          - Update descVersion bis 38, wie durch GIANTS angewiesen
-          - Update Änderungsprotokoll wie von GIANTS angewiesen
-        v1.0.0.5 2017-11-21
-          - Anzeige zu Admin-Playern, wenn separate Accounts aktiviert sind
-        v1.0.0.4 2017-10-26
-          - Ändern Sie das Mod-Symbol, um den LS17-Vorlagenhintergrund gemäß GIANTS zu verwenden.
-        v1.0.0.3 2017-10-10
-          - Aktualisierung der deutschen Beschreibungsübersetzung nach GIANTS
-        v1.0.0.2 2017-10-08
-          - Behebung eines Problems, bei dem nachfolgende Updates manchmal nicht an den Client gesendet werden
-        v1.0.0.1 2017-10-05
-          - Problem behoben, bei dem der zweite Spieler einen ungültigen Ereignis-ID-Fehler erhält
-        v1.0.0.0 2017-10-01
-          - Erstveröffentlichung
+- Ein Mod exklusiv für Multiplayer-Spiele.
+- Automatisches Speichern von separatem Multiplayer-Kontogeld und Zurückgeben von gespartem Geld an die Spieler zu Beginn der nächsten Spielsitzung.
+- Zeigen Sie das Gesamtgeld aller Spieler als separaten Betrag in einem Mehrspieler-Spiel an, wenn separate Konten aktiviert sind.
+- Das automatische Speichern und Laden basiert auf dem Spielernamen.
+- Spielergeld wird nach dem Trennen immer noch an den Server zurückgegeben, sodass es nie verloren geht, aber ShowMeTheMoney wird das gespeicherte Geld beim nächsten Verbindungsaufbau an den Player zurückgeben und es vom Servergeld abziehen.
+- Stellen Sie bei dedizierten Servern sicher, dass der Wert playerName in der Datei careerSavegame.xml nicht von Spielern verwendet wird, die sich mit dem Spiel verbinden, um Probleme zu vermeiden.
+
+Änderungsprotokoll:
+  v2.0.0.0 2018-01-12
+    - Unterstützt jetzt das automatische Speichern und Laden einzelner Spielerbeträge über Spielsitzungen hinweg (bei Verwendung separater Konten), ohne dass ein manueller Eingriff erforderlich ist
+    - Fehler behoben, bei dem das Hosting eines Spiels ShowMeTheMoney für den Host-Player zeigte, wenn separate Konten deaktiviert waren
+    - Refaktorisiert und optimiert
+  v1.0.0.7 2017-12-01
+    - Unterstütze Mods, die das HUD ausblenden, indem nur angezeigt wird, wenn die Spielzeit angezeigt wird
+  v1.0.0.6 2017-11-27
+    - Update descVersion bis 38, wie durch GIANTS angewiesen
+    - Update Änderungsprotokoll wie von GIANTS angewiesen
+  v1.0.0.5 2017-11-21
+    - Anzeige zu Admin-Playern, wenn separate Accounts aktiviert sind
+  v1.0.0.4 2017-10-26
+    - Ändern Sie das Mod-Symbol, um den LS17-Vorlagenhintergrund gemäß GIANTS zu verwenden.
+  v1.0.0.3 2017-10-10
+    - Aktualisierung der deutschen Beschreibungsübersetzung nach GIANTS
+  v1.0.0.2 2017-10-08
+    - Behebung eines Problems, bei dem nachfolgende Updates manchmal nicht an den Client gesendet werden
+  v1.0.0.1 2017-10-05
+    - Problem behoben, bei dem der zweite Spieler einen ungültigen Ereignis-ID-Fehler erhält
+  v1.0.0.0 2017-10-01
+    - Erstveröffentlichung
+
+  Danke an timmiej93, Xentro, kevink98, Decker_MMIV, Rahkiin und die Modding-Community.
 
    ]]></de>
       <en><![CDATA[
-      This displays the total amount of shared money on the server to all players when playing a multiplayer game.
+- A mod exclusively for multiplayer games.
+- Automatically save multiplayer separate account money and return saved money back to the players at the start of the next game session.
+- Display total money of all players as a separate amount in a multiplayer game, when separate accounts are enabled.
+- Automatic saving and loading is based on the player name.
+- Player money is still returned to the server after disconnect, so it is never lost, but ShowMeTheMoney will return the saved money to the player the next time they connect, and deduct it from the server money.
+- For dedicated servers, make sure the playerName value in the careerSavegame.xml file is not used by players connecting to the game, to avoid problems.
 
-      Change log:
-        v1.0.0.7 2017-12-01
-          - Support HUD hiding mods by only displaying when in-game time is displayed
-        v1.0.0.6 2017-11-27
-          - Update descVersion to 38 as per Giants
-          - Update change log as per Giants
-        v1.0.0.5 2017-11-21
-          - Display to admin players when separate accounts are enabled
-        v1.0.0.4 2017-10-26
-          - Change mod icon to use FS17 template background as per Giants
-        v1.0.0.3 2017-10-10
-          - Update German description translation as per Giants
-        v1.0.0.2 2017-10-08
-          - Fix issue where subsequent updates are sometimes not sent to the client
-        v1.0.0.1 2017-10-05
-          - Fix issue where 2nd player gets invalid event ID error
-        v1.0.0.0 2017-10-01
-          - Initial release
+Change log:
+  v2.0.0.0 2018-01-12
+    - Now supports the automatic saving and loading of individual player amounts across game sessions (when using separate accounts), without needing any manual intervention.
+    - Fixed bug where hosting a game would display ShowMeTheMoney to the host player when separate accounts are off.
+    - Refactored and optimized.
+  v1.0.0.7 2017-12-01
+    - Support HUD hiding mods by only displaying when in-game time is displayed
+  v1.0.0.6 2017-11-27
+    - Update descVersion to 38 as per Giants
+    - Update change log as per Giants
+  v1.0.0.5 2017-11-21
+    - Display to admin players when separate accounts are enabled
+  v1.0.0.4 2017-10-26
+    - Change mod icon to use FS17 template background as per Giants
+  v1.0.0.3 2017-10-10
+    - Update German description translation as per Giants
+  v1.0.0.2 2017-10-08
+    - Fix issue where subsequent updates are sometimes not sent to the client
+  v1.0.0.1 2017-10-05
+    - Fix issue where 2nd player gets invalid event ID error
+  v1.0.0.0 2017-10-01
+    - Initial release
+    
+  Thanks to timmiej93, Xentro, kevink98, Decker_MMIV, Rahkiin and the modding community.
 
    ]]></en>
       <fr><![CDATA[
-      Cela affiche le montant total de l'argent partagé sur le serveur à tous les joueurs lors d'une partie multijoueur.
-      
-      Journal des modifications:
-        v1.0.0.7 2017-12-01
-          - Supporte les mods qui cachent le HUD en affichant seulement quand l'heure du jeu est affichée
-        v1.0.0.6 2017-11-27
-          - Mettre à jour descVersion à 38 selon GIANTS
-          - Mettre à jour le journal des modifications selon GIANTS
-        v1.0.0.5 2017-11-21
-          - Affichage aux joueurs admin lorsque les comptes séparés sont activés
-        v1.0.0.4 2017-10-26
-          - Changer l'icône de mod pour utiliser l'arrière-plan standard selon GIANTS
-        v1.0.0.3 2017-10-10
-          - Mettre à jour la traduction allemande de la description selon GIANTS
-        v1.0.0.2 2017-10-08
-          - Correction d'un problème où les mises à jour ultérieures ne sont parfois pas envoyées au client
-        v1.0.0.1 2017-10-05
-          - Correction d'un problème où le 2ème joueur obtient une erreur d'identification d'événement invalide
-        v1.0.0.0 2017-10-01
-          - Version initiale
+- Un mod exclusivement pour les jeux multijoueurs.
+- Sauvegardez automatiquement l'argent du compte multijoueur et rapportez l'argent économisé aux joueurs au début de la prochaine session de jeu.
+- Afficher le montant total de tous les joueurs en tant que montant distinct dans une partie multijoueur, lorsque des comptes séparés sont activés.
+- L'enregistrement et le chargement automatiques sont basés sur le nom du joueur.
+- L'argent du joueur est toujours restitué au serveur après la déconnexion, donc il n'est jamais perdu, mais ShowMeTheMoney retournera l'argent économisé au joueur la prochaine fois qu'il se connectera, et le déduira de l'argent du serveur.
+- Pour les serveurs dédiés, assurez-vous que la valeur playerName dans le fichier careerSavegame.xml n'est pas utilisée par les joueurs se connectant au jeu, pour éviter les problèmes.
+
+Journal des modifications:
+  v2.0.0.0 2018-01-12
+    - Supporte maintenant l'enregistrement automatique et le chargement des montants individuels des joueurs à travers les sessions de jeu (en utilisant des comptes séparés), sans intervention manuelle
+    - Correction d'un bug où l'hébergement d'un jeu afficherait ShowMeTheMoney au joueur hôte lorsque des comptes séparés sont désactivés
+    - Refonte et optimisé
+  v1.0.0.7 2017-12-01
+    - Supporte les mods qui cachent le HUD en affichant seulement quand l'heure du jeu est affichée
+  v1.0.0.6 2017-11-27
+    - Mettre à jour descVersion à 38 selon GIANTS
+    - Mettre à jour le journal des modifications selon GIANTS
+  v1.0.0.5 2017-11-21
+    - Affichage aux joueurs admin lorsque les comptes séparés sont activés
+  v1.0.0.4 2017-10-26
+    - Changer l'icône de mod pour utiliser l'arrière-plan standard selon GIANTS
+  v1.0.0.3 2017-10-10
+    - Mettre à jour la traduction allemande de la description selon GIANTS
+  v1.0.0.2 2017-10-08
+    - Correction d'un problème où les mises à jour ultérieures ne sont parfois pas envoyées au client
+  v1.0.0.1 2017-10-05
+    - Correction d'un problème où le 2ème joueur obtient une erreur d'identification d'événement invalide
+  v1.0.0.0 2017-10-01
+    - Version initiale
+
+  Merci à timmiej93, Xentro, kevink98, Decker_MMIV, Rahkiin et la communauté de modding.
 
    ]]></fr>
     </description>
     <multiplayer supported="true"/>
-    <iconFilename>store.dds</iconFilename>
+    <iconFilename>icon.dds</iconFilename>
     <extraSourceFiles>
       <sourceFile filename="ShowMeTheMoney.lua" />
     </extraSourceFiles>
